@@ -1,0 +1,23 @@
+eversion: "3"
+services:
+  jellyfin:
+    image: jellyfin/jellyfin:latest
+    container_name: jellyfin
+    volumes:
+      - ./config:/config
+      - ./jellyfin/cache:/cache
+      - /path/to/media:/media:ro
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 1024M
+    networks:
+      default:
+        ipv4_address: 10.10.10.14
+        
+networks:
+  default:
+    external:
+      name: dockernet
