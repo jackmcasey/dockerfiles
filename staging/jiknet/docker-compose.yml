@@ -14,8 +14,6 @@ services:
     image: jc21/nginx-proxy-manager:latest
     container_name: nginx-proxy-manager
     restart: unless-stopped
-    networks:
-      - jiknet
     volumes:
       - /opt/nginx-proxy-manager/:/data
       - /opt/letsencrypt:/etc/letsencrypt
@@ -24,4 +22,6 @@ services:
       - "8081:81"
       - "443:443"
 networks:
-  jiknet:
+  default:
+    external:
+      name: jiknet
